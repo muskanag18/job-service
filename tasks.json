@@ -1,0 +1,45 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build tests",
+      "type": "shell",
+      "command": "clang++",
+      "args": [
+        "-std=c++17",
+        "-g",
+        "-Iinclude",
+        "src/job_service.cpp",
+        "tests/job_service_test.cpp",
+        "-o",
+        "job_service_test"
+      ],
+      "group": "build"
+    },
+    {
+      "label": "build cpp",
+      "type": "shell",
+      "command": "clang++",
+      "args": [
+        "-std=c++17",
+        "-g",
+        "-Iinclude",
+        "src/job_service.cpp",
+        "main.cpp",
+        "-o",
+        "main"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "run tests",
+      "type": "shell",
+      "command": "./job_service_test",
+      "dependsOn": "build tests",
+      "group": "test"
+    }
+  ]
+}
